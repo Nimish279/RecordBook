@@ -101,6 +101,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const ChangePassword = () => {
   const [form, setForm] = useState({
@@ -111,6 +112,9 @@ const ChangePassword = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -172,14 +176,26 @@ const ChangePassword = () => {
               New Password
             </label>
             <input
-              type="password"
+              // type="password"
+              type={showPassword ? "text" : "password"}
               name="newPassword"
               value={form.newPassword}
               placeholder="Enter new password"
               onChange={handleChange}
               className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
+              // onClick={() => setShowPassword(!showPassword)}
             />
+            <div
+              className="inset-y-0 right-3 flex items-center cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-gray-500" />
+              )}
+            </div>
           </div>
 
           <div>
@@ -187,7 +203,8 @@ const ChangePassword = () => {
               Confirm New Password
             </label>
             <input
-              type="password"
+              // type="password"
+              type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               value={form.confirmPassword}
               placeholder="Confirm new password"
@@ -195,6 +212,16 @@ const ChangePassword = () => {
               className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
+            <div
+              className="inset-y-0 right-3 flex items-center cursor-pointer"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? (
+                <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-gray-500" />
+              )}
+            </div>
           </div>
 
           <button
