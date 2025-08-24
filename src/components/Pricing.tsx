@@ -55,117 +55,68 @@ const Pricing: React.FC = () => {
   return (
     <div className="bg-slate-50 min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-inter">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">Our Pricing Plans</h1>
+        <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          Our Pricing Plans
+        </h1>
         <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
           Choose the plan that best suits your business needs.
         </p>
       </div>
 
-      <div className="flex flex-col items-center max-w-screen-xl mx-auto">
-        <div className="grid gap-8 md:grid-cols-2 max-w-screen-xl mx-auto mb-8">
-          {plans.slice(0, 2).map((plan, index) => (
-            <div
-              key={index}
-              className="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden w-full max-w-sm mx-auto"
-              style={{ borderTop: `6px solid ${plan.color}` }}
-            >
-              <div className="p-8 text-center flex flex-col h-full">
-                <h2
-                  className="text-2xl font-bold mb-4"
-                  style={{ color: plan.color }}
-                >
-                  {plan.name}
-                </h2>
-                <p className="text-4xl font-extrabold text-gray-900 mb-6">
-                  {plan.price}
-                </p>
-                <ul className="text-gray-700 text-base flex-grow space-y-4 text-left">
-                  {plan.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 border-b border-gray-200 pb-2 last:border-b-0"
+      {/* Plans ek line me 3 columns */}
+      <div className="grid gap-8 md:grid-cols-3 max-w-screen-xl mx-auto">
+        {plans.map((plan, index) => (
+          <div
+            key={index}
+            className="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden w-full max-w-sm mx-auto"
+            style={{ borderTop: `6px solid ${plan.color}` }}
+          >
+            <div className="p-8 text-center flex flex-col h-full">
+              <h2
+                className="text-2xl font-bold mb-4"
+                style={{ color: plan.color }}
+              >
+                {plan.name}
+              </h2>
+              <p className="text-4xl font-extrabold text-gray-900 mb-6">
+                {plan.price}
+              </p>
+              <ul className="text-gray-700 text-base flex-grow space-y-4 text-left">
+                {plan.features.map((feature, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center gap-3 border-b border-gray-200 pb-2 last:border-b-0"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-green-500 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-500 flex-shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  onClick={() => handleGetStarted(plan)}
-                  className="mt-8 w-full bg-gray-800 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                >
-                  Get Started
-                </button>
-              </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={() => handleGetStarted(plan)}
+                className="mt-8 w-full bg-gray-800 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                Get Started
+              </button>
             </div>
-          ))}
-        </div>
-
-        {/* Gold Plan is separate to match the requested layout */}
-        {plans.slice(2).map((plan, index) => (
-            <div
-              key={index}
-              className="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden w-full max-w-sm mx-auto"
-              style={{ borderTop: `6px solid ${plan.color}` }}
-            >
-              <div className="p-8 text-center flex flex-col h-full">
-                <h2
-                  className="text-2xl font-bold mb-4"
-                  style={{ color: plan.color }}
-                >
-                  {plan.name}
-                </h2>
-                <p className="text-4xl font-extrabold text-gray-900 mb-6">
-                  {plan.price}
-                </p>
-                <ul className="text-gray-700 text-base flex-grow space-y-4 text-left">
-                  {plan.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 border-b border-gray-200 pb-2 last:border-b-0"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-500 flex-shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  onClick={() => handleGetStarted(plan)}
-                  className="mt-8 w-full bg-gray-800 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                >
-                  Get Started
-                </button>
-              </div>
-            </div>
-          ))}
+          </div>
+        ))}
       </div>
 
+      {/* Modal */}
       <GetStartedModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
